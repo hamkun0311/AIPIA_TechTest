@@ -33,7 +33,7 @@ class OrderControllerTest {
     @Test
     void 주문생성_API_성공() throws Exception {
         // 1) 회원 생성
-        MemberCreateRequest memberReq = new MemberCreateRequest("주문유저", "order-user@example.com");
+        MemberCreateRequest memberReq = new MemberCreateRequest("장인자", "jij@example.com");
 
         String memberJson = mockMvc.perform(post("/api/members")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -71,7 +71,7 @@ class OrderControllerTest {
     @Test
     void 주문조회_API_성공() throws Exception {
         // 1) 회원 생성
-        MemberCreateRequest memberReq = new MemberCreateRequest("주문조회유저", "order-get@example.com");
+        MemberCreateRequest memberReq = new MemberCreateRequest("이상만", "lsm@example.com");
 
         String memberJson = mockMvc.perform(post("/api/members")
                         .contentType(MediaType.APPLICATION_JSON)

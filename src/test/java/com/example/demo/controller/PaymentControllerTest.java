@@ -36,7 +36,7 @@ class PaymentControllerTest {
     @Test
     void 결제_API_전체흐름_성공() throws Exception {
         // 1) 회원 생성
-        MemberCreateRequest memberReq = new MemberCreateRequest("결제유저", "pay-user@example.com");
+        MemberCreateRequest memberReq = new MemberCreateRequest("안영숙", "ays@example.com");
 
         String memberJson = mockMvc.perform(post("/api/members")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -74,7 +74,7 @@ class PaymentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status", is("COMPLETED")))
                 .andExpect(jsonPath("$.method", is("CARD")))
-                // 🔽 amount는 jsonPath로 검사하지 않고, 아래에서 DTO로 검사
+                // amount는 jsonPath로 검사하지 않고, 아래에서 DTO로 검사
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

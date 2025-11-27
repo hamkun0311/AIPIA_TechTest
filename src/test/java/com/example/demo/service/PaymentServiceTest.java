@@ -27,7 +27,7 @@ class PaymentServiceTest {
     @Test
     void 결제성공() {
         // given
-        Member member = new Member("철수", "test@test.com");
+        Member member = new Member("오혜성", "ohs@expample.com");
         Order order = new Order(member, BigDecimal.valueOf(5000));
 
         Mockito.when(orderRepository.findById(1L)).thenReturn(Optional.of(order));

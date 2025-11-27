@@ -26,25 +26,25 @@ class MemberControllerTest {
 
     @Test
     void 회원_생성_API_성공() throws Exception {
-        MemberCreateRequest req = new MemberCreateRequest("홍길동", "hong@example.com");
+        MemberCreateRequest req = new MemberCreateRequest("오혜성", "ohs@example.com");
 
         mockMvc.perform(post("/api/members")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(req)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.email", is("hong@example.com")));
+                .andExpect(jsonPath("$.email", is("ohs@example.com")));
     }
 
     @Test
     void 회원_조회_API_성공() throws Exception {
         // 1) 먼저 회원 생성
-        MemberCreateRequest req = new MemberCreateRequest("김철수", "kim@example.com");
+        MemberCreateRequest req = new MemberCreateRequest("이송희", "songhee@example.com");
 
         String responseBody = mockMvc.perform(post("/api/members")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(req)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.email", is("kim@example.com")))
+                .andExpect(jsonPath("$.email", is("songhee@example.com")))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -58,8 +58,8 @@ class MemberControllerTest {
         // 3) 그 id로 다시 조회
         mockMvc.perform(get("/api/members/" + createdId))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("김철수")))
-                .andExpect(jsonPath("$.email", is("kim@example.com")));
+                .andExpect(jsonPath("$.name", is("이송희")))
+                .andExpect(jsonPath("$.email", is("songhee@example.com")));
     }
 
 }

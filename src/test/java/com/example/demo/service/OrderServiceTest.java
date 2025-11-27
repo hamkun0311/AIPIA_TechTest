@@ -23,7 +23,7 @@ class OrderServiceTest {
     @Test
     void 주문생성_성공() {
         // given
-        Member member = new Member("철수", "test@test.com");
+        Member member = new Member("오혜성", "ohs@example.com");
         Mockito.when(memberRepository.findById(1L)).thenReturn(Optional.of(member));
 
         Order savedOrder = new Order(member, BigDecimal.valueOf(10000));
