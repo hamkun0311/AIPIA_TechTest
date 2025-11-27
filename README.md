@@ -1,0 +1,77 @@
+# Spring Boot 주문/결제 시스템
+
+본 프로젝트는 Spring Boot + JPA 기반으로 **회원(Member) · 주문(Order) · 결제(Payment)** 도메인을 설계하고  
+각각의 연관관계를 정립한 뒤, REST API 형태로 기능을 제공하는 예제입니다.
+
+---
+
+## 1. 기술 스택
+
+- Java 17
+- Spring Boot 3.x
+- Spring Data JPA
+- H2 In-Memory Database
+- Gradle
+- Lombok
+- Validation(Jakarta)
+
+---
+
+## 2. 도메인 모델링
+
+### 핵심 엔티티
+
+- **회원 (Member)**
+    - 회원 가입/조회 기능
+    - 주문과 **1 : N** 관계
+
+- **주문 (Order)**
+    - 주문 생성/조회 기능
+    - 회원과 **N : 1**
+    - 결제와 **1 : 1**
+
+- **결제 (Payment)**
+    - 결제 생성/조회 기능
+    - 주문과 **1 : 1**
+    - 결제 완료 시 주문 상태 자동 변경
+
+---
+
+## 3. 도메인 연관관계 요약
+
+- **Member → Order = 1:N**
+- **Order → Member = N:1**
+- **Order → Payment = 1:1**
+- **Payment → Order = 1:1**
+
+---
+
+## 4. 도메인 다이어그램 (Mermaid)
+
+```mermaid
+classDiagram
+    class Member {
+        Long id
+        String name
+        String email
+        LocalDateTime createdAt
+    }
+
+    class Order {
+        Long id
+        LocalDateTime orderDate
+        BigDecimal totalAmount
+        OrderStatus status
+    }
+
+    class Payment {
+        Long id
+        BigDecimal amount
+        PaymentStatus status
+        PaymentMethod method
+        LocalDateTime paidAt
+    }
+
+    Member "1" --> "many" Order
+    Order "1" --> "1" Payment
+
