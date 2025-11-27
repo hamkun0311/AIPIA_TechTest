@@ -27,7 +27,6 @@
 
 - **주문 (Order)**
     - 주문 생성/조회 기능
-    - 회원과 **N : 1**
     - 결제와 **1 : 1**
 
 - **결제 (Payment)**
@@ -39,10 +38,9 @@
 
 ## 3. 도메인 연관관계 요약
 
-- **Member → Order = 1:N**
-- **Order → Member = N:1**
-- **Order → Payment = 1:1**
-- **Payment → Order = 1:1**
+- **Member - Order = 1:N**
+- **Order - Payment = 1:1**
+- **Payment - Order = 1:1**
 
 ---
 
@@ -72,6 +70,6 @@ classDiagram
         LocalDateTime paidAt
     }
 
-    Member "1" <--> "many" Order
-    Order "1" <--> "1" Payment
+    Member "1" -- "many" Order
+    Order "1" -- "1" Payment
 
