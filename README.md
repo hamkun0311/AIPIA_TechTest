@@ -8,7 +8,7 @@
 ## 1. 기술 스택
 
 - Java 17
-- Spring Boot 3.x
+- Spring Boot 3.5.9
 - Spring Data JPA
 - H2 In-Memory Database
 - Gradle
