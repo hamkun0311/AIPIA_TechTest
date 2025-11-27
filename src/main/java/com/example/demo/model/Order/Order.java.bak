@@ -14,7 +14,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //Member : Order = 1 : N
+    // ★ Member : Order = 1 : N
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
@@ -29,7 +29,7 @@ public class Order {
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal totalAmount;
 
-    //Order : Payment = 1 : 1 
+    // ★ Order : Payment = 1 : 1 (양방향)
     @OneToOne(mappedBy = "order", fetch = FetchType.LAZY)
     private Payment payment;
 
@@ -52,7 +52,7 @@ public class Order {
         this.status = OrderStatus.CANCELLED;
     }
 
-    // getter
+    // getter들
     public Long getId() { return id; }
     public Member getMember() { return member; }
     public OrderStatus getStatus() { return status; }
@@ -60,7 +60,7 @@ public class Order {
     public BigDecimal getTotalAmount() { return totalAmount; }
     public Payment getPayment() { return payment; }
 
-    // 연관관계 편의 메서드
+    // 연관관계 편의 메서드 (필요하면)
     public void setMember(Member member) {
         this.member = member;
     }

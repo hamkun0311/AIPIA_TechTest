@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    //잘못된 요청 파라미터, 검증 실패 등
+    // 1) 잘못된 요청 파라미터, 검증 실패 등
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> handleIllegalArgument(
             IllegalArgumentException ex,
@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(body);
     }
 
-    //비즈니스 상태 문제 (중복 결제 등)
+    // 2) 비즈니스 상태 문제 (중복 결제 등)
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<ErrorResponse> handleIllegalState(
             IllegalStateException ex,
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(body);
     }
 
-    //그 밖의 처리 안 된 모든 예외 > 500
+    // 3) 그 밖의 처리 안 된 모든 예외 > 500
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(
             Exception ex,

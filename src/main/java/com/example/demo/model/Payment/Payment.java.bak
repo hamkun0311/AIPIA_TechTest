@@ -52,7 +52,7 @@ public class Payment {
         this.status = PaymentStatus.FAILED;
     }
 
-    // getter
+    // getter들
     public Long getId() { return id; }
     public Order getOrder() { return order; }
     public PaymentStatus getStatus() { return status; }
